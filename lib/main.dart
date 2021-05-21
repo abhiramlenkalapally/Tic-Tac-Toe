@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
           child: GestureDetector(
             onTap: () {
               setState(() {
-                _tap = true;
+                _tap = !_tap;
               });
             },
             child: sendImage(),
