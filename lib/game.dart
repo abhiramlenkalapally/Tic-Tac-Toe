@@ -12,7 +12,7 @@ class _GameState extends State<Game> {
   int count = 0;
   bool visibility = true;
 
-  Widget result() {
+  String result() {
     if ((x.contains(0) & x.contains(1) & x.contains(2)) |
         (x.contains(3) & x.contains(4) & x.contains(5)) |
         (x.contains(6) & x.contains(7) & x.contains(8)) |
@@ -23,20 +23,7 @@ class _GameState extends State<Game> {
         (x.contains(6) & x.contains(2) & x.contains(6))) {
       visibility = false;
 
-      return Padding(
-        padding: EdgeInsets.all(30),
-        child: Container(
-          color: Colors.white,
-          height: 100,
-          width: 300,
-          child: Center(
-            child: Text(
-              "X WON",
-              style: TextStyle(fontSize: 60, fontStyle: FontStyle.italic),
-            ),
-          ),
-        ),
-      );
+      return "X WON";
     } else if ((o.contains(0) & o.contains(1) & o.contains(2)) |
         (o.contains(3) & o.contains(4) & o.contains(5)) |
         (o.contains(6) & o.contains(7) & o.contains(8)) |
@@ -47,35 +34,13 @@ class _GameState extends State<Game> {
         (o.contains(6) & o.contains(2) & o.contains(6))) {
       visibility = false;
 
-      return Padding(
-        padding: EdgeInsets.all(30),
-        child: Container(
-          color: Colors.white,
-          height: 100,
-          width: 300,
-          child: Center(
-            child: Text("O WON",
-                style: TextStyle(fontSize: 60, fontStyle: FontStyle.italic)),
-          ),
-        ),
-      );
+      return "O WON";
     } else if (count == 9) {
       visibility = false;
 
-      return Padding(
-        padding: EdgeInsets.all(30),
-        child: Container(
-          color: Colors.white,
-          height: 100,
-          width: 300,
-          child: Center(
-            child: Text("DRAW",
-                style: TextStyle(fontSize: 60, fontStyle: FontStyle.italic)),
-          ),
-        ),
-      );
+      return "DRAW";
     } else {
-      return Container();
+      return "";
     }
   }
 
@@ -83,6 +48,9 @@ class _GameState extends State<Game> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
@@ -127,29 +95,46 @@ class _GameState extends State<Game> {
                       },
                       child: Container(
                         color: Colors.white,
-                        child: Text(
-                          _values[index],
-                          style: TextStyle(fontSize: 130),
+                        child: Center(
+                          child: Text(
+                            _values[index],
+                            style: TextStyle(fontSize: height * 0.18),
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
-              result(),
+              Container(
+                child: Center(
+                  child: Text(
+                    result(),
+                    style: TextStyle(
+                      fontSize: height * 0.05,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
               GestureDetector(
                 onTap: () => Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Game())),
                 child: Padding(
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.all(10),
                   child: Container(
                     color: Colors.white,
-                    height: 100,
-                    width: 300,
+                    height: height * 0.1,
+                    width: width * 0.7,
                     child: Center(
-                      child: Text("Start a new game",
-                          style: TextStyle(
-                              fontSize: 35, fontStyle: FontStyle.italic)),
+                      child: Text(
+                        "Start a new game",
+                        style: TextStyle(
+                          fontSize: height * 0.05,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
                     ),
                   ),
                 ),
