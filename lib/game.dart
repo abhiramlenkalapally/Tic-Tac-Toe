@@ -131,7 +131,7 @@ class _GameState extends State<Game> {
                       child: Text(
                         "Start a new game",
                         style: TextStyle(
-                          fontSize: height * 0.05,
+                          fontSize: height * 0.045,
                           fontStyle: FontStyle.italic,
                         ),
                       ),
