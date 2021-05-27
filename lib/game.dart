@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tictactoe/main.dart';
 
 class Game extends StatefulWidget {
   @override
@@ -55,6 +56,10 @@ class _GameState extends State<Game> {
       appBar: AppBar(
         backgroundColor: Colors.indigoAccent,
         title: Text("Tic-Tac-Toe"),
+        leading: GestureDetector(
+            onTap: () => Navigator.push(
+                context, MaterialPageRoute(builder: (context) => HomePage())),
+            child: Icon(Icons.arrow_back)),
       ),
       body: Container(
         color: Colors.black,
@@ -88,8 +93,6 @@ class _GameState extends State<Game> {
                               o.add(index);
                               _tap = true;
                             }
-                            print(x);
-                            print(o);
                           },
                         );
                       },
@@ -98,7 +101,7 @@ class _GameState extends State<Game> {
                         child: Center(
                           child: Text(
                             _values[index],
-                            style: TextStyle(fontSize: height * 0.18),
+                            style: TextStyle(fontSize: height * 0.16),
                           ),
                         ),
                       ),

@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Tic-Tac-Toe"),
         backgroundColor: Colors.black45,
+        leading: Container(),
       ),
       body: Container(
         color: Colors.black,
